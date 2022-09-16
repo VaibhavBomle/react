@@ -8,16 +8,24 @@ export default function TextForm(props) {
     setText(newText);
   }
 
+  const handleLowerClick =()=>{
+    //console.log("handleLowerClick "+text);
+    let newText = text.toLowerCase();
+   // setText("You have clicked handleLowerClick");
+    setText(newText);
+  }
+
   const handleOnChange =(event)=>{
    // console.log("handleOnChange");
    setText(event.target.value);
   }
-  const [text,setText] = useState('Enter Text here');
+  const [text,setText] = useState('');
   // text = "New Text" // Incorrect way to change the state
    //setText("new text"); // Corret way to change the state
 
 
   return (
+    <>
     <div>
       <h1>{props.heading}</h1>
       <div className="mb-3"> 
@@ -29,7 +37,18 @@ export default function TextForm(props) {
           rows="8"
         ></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleLowerClick}>Convert to Lowercase</button>
+
     </div>
+    <div className="container my-3">
+      <h1>Your text summary</h1>
+      <p>{text.split(" ").length} words  {text.length} characters</p>
+      <p>{0.0089 * text.split(" ").length} Minutes read</p>
+      <h2>Preview</h2>
+      <p>{text}</p>
+    </div>
+    </>
+
   );
 }
