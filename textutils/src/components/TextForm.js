@@ -15,10 +15,17 @@ export default function TextForm(props) {
     setText(newText);
   }
 
+  const handleRemoveDoubleSpaceClick =()=>{
+    let textContainSingleSpace = text.replace("  "," ");
+    setText(textContainSingleSpace);
+  }
+
   const handleOnChange =(event)=>{
    // console.log("handleOnChange");
    setText(event.target.value);
   }
+
+
   const [text,setText] = useState('');
   // text = "New Text" // Incorrect way to change the state
    //setText("new text"); // Corret way to change the state
@@ -39,6 +46,7 @@ export default function TextForm(props) {
       </div>
       <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
       <button className="btn btn-primary mx-1" onClick={handleLowerClick}>Convert to Lowercase</button>
+      <button className="btn btn-primary mx-1" onClick={handleRemoveDoubleSpaceClick}>Remove Double Space</button>
 
     </div>
     <div className="container my-3">
