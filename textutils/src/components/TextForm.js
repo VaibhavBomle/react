@@ -30,6 +30,10 @@ export default function TextForm(props) {
     text.select();
     navigator.clipboard.writeText(text.value);
   }
+
+  const clearText= () =>{
+   setText("");
+  }
   const [text,setText] = useState('');
   // text = "New Text" // Incorrect way to change the state
    //setText("new text"); // Corret way to change the state
@@ -37,13 +41,14 @@ export default function TextForm(props) {
 
   return (
     <>
-    <div>
-      <h1>{props.heading}</h1>
+    <div className="container my-3"   style = {{color : props.mode===`dark`?`white`:`#042743`}}>
+      <h1 >{props.heading}</h1>
       <div className="mb-3"> 
         <textarea
           className ="form-control" 
           value={text}
           onChange = {handleOnChange}
+          style = {{backgroundColor : props.mode===`dark`?`gray`:`white`,color:props.mode===`dark`?`white`:`gray`}}
           id="myBox"
           rows="8"
         ></textarea>
@@ -52,14 +57,16 @@ export default function TextForm(props) {
       <button className="btn btn-primary mx-1" onClick={handleLowerClick}>Convert to Lowercase</button>
       <button className="btn btn-primary mx-1" onClick={handleRemoveDoubleSpaceClick}>Remove Double Space</button>
       <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
+      <button className="btn btn-primary mx-1" onClick={clearText}>Clear Text</button>
+
 
     </div>
-    <div className="container my-3">
+    <div className="container my-3"   style = {{color : props.mode===`dark`?`white`:`#042743`}}>
       <h1>Your text summary</h1>
       <p>{text.split(" ").length} words  {text.length} characters</p>
       <p>{0.0089 * text.split(" ").length} Minutes read</p>
       <h2>Preview</h2>
-      <p>{text}</p>
+      <p>{text.length > 0 ? text:"Enter in text box above"}</p>
     </div>
     </>
 
