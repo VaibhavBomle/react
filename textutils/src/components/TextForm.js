@@ -6,6 +6,7 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
    // setText("You have clicked handleUpClick");
     setText(newText);
+    props.showAlert("Converted to upper case ","Success")
   }
 
   const handleLowerClick =()=>{
@@ -13,11 +14,14 @@ export default function TextForm(props) {
     let newText = text.toLowerCase();
    // setText("You have clicked handleLowerClick");
     setText(newText);
+    props.showAlert("Converted to lower case ","Success")
+
   }
 
   const handleRemoveDoubleSpaceClick =()=>{
     let textContainSingleSpace = text.replace("  "," ");
     setText(textContainSingleSpace);
+    props.showAlert("Remove double space ","Success")
   }
 
   const handleOnChange =(event)=>{
@@ -29,6 +33,8 @@ export default function TextForm(props) {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.TextFormshowAlert("Copied to clipboard! ","Successfully")
+
   }
 
   const clearText= () =>{
