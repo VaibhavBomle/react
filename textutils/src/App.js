@@ -15,6 +15,7 @@ import {
 
 
 function App() {
+  console.log("App   Starting...");
   const [mode, setMode] = useState(`light`);
   const [alert,setAlert] = useState(null);
 
