@@ -19,7 +19,7 @@ export default function TextForm(props) {
   }
 
   const handleRemoveDoubleSpaceClick =()=>{
-    let textContainSingleSpace = text.replace("  "," ");
+    let textContainSingleSpace = text.replace(/\s+/g, ' ').trim();
     setText(textContainSingleSpace);
     props.showAlert("Remove double space ","Success")
   }
@@ -54,25 +54,23 @@ export default function TextForm(props) {
           className ="form-control" 
           value={text}
           onChange = {handleOnChange}
-          style = {{backgroundColor : props.mode===`dark`?`gray`:`white`,color:props.mode===`dark`?`white`:`gray`}}
+          style = {{backgroundColor : props.mode===`dark`?`#11376e`:`white`,color:props.mode===`dark`?`white`:`gray`}}
           id="myBox"
           rows="8"
         ></textarea>
       </div>
-      <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-      <button className="btn btn-primary mx-1" onClick={handleLowerClick}>Convert to Lowercase</button>
-      <button className="btn btn-primary mx-1" onClick={handleRemoveDoubleSpaceClick}>Remove Double Space</button>
-      <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
-      <button className="btn btn-primary mx-1" onClick={clearText}>Clear Text</button>
-
-
+      <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+      <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleLowerClick}>Convert to Lowercase</button>
+      <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleRemoveDoubleSpaceClick}>Remove Double Space</button>
+      <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy Text</button>
+      <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={clearText}>Clear Text</button>
     </div>
     <div className="container my-3"   style = {{color : props.mode===`dark`?`white`:`#042743`}}>
       <h1>Your text summary</h1>
-      <p>{text.split(" ").length} words  {text.length} characters</p>
-      <p>{0.0089 * text.split(" ").length} Minutes read</p>
+      <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words  {text.length} characters</p>
+      <p>{0.0089 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read</p>
       <h2>Preview</h2>
-      <p>{text.length > 0 ? text:"Enter in text box above"}</p>
+      <p>{text.length > 0 ? text:"No Preview available..."}</p>
     </div>
     </>
 
