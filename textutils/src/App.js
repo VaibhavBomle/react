@@ -38,6 +38,17 @@ function App() {
     document.body.classList.remove(`bg-warning`);
   }
 
+  // Or you can write function this way
+   // function removeBodyClasses(){
+  //   document.body.classList.remove(`bg-light`);
+  //   document.body.classList.remove(`bg-danger`);
+  //   document.body.classList.remove(`bg-success`);
+  //   document.body.classList.remove(`bg-dark`);
+  //   document.body.classList.remove(`bg-warning`);
+  // }
+
+ 
+
   const toggleMode = (cls) =>{
     removeBodyClasses();
     console.log("cls: "+cls)
