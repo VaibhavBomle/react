@@ -30,20 +30,46 @@ function App() {
 
   }
 
-  const toggleMode = () =>{
+  const removeBodyClasses= ()=>{
+    document.body.classList.remove(`bg-light`);
+    document.body.classList.remove(`bg-danger`);
+    document.body.classList.remove(`bg-success`);
+    document.body.classList.remove(`bg-dark`);
+    document.body.classList.remove(`bg-warning`);
+  }
+
+  const toggleMode = (cls) =>{
+    removeBodyClasses();
+    console.log("cls: "+cls)
+    document.body.classList.add(`bg-`+cls)
     if(mode === `light`){
       setMode(`dark`)
       document.body.style.backgroundColor = `#042743`;
       showAlert("Dark mode has been enable ","Success");
-      document.title = "TextUtils - Dark Mode";
+     // document.title = "TextUtils - Dark Mode";
     }else{
       setMode(`light`)
       document.body.style.backgroundColor = `white`;
       showAlert("Light mode has been enable ","Success");
-      document.title = "TextUtils - Light Mode";
+      //document.title = "TextUtils - Light Mode";
 
     }
   }
+
+  // const toggleMode = () =>{
+  //   if(mode === `light`){
+  //     setMode(`dark`)
+  //     document.body.style.backgroundColor = `#042743`;
+  //     showAlert("Dark mode has been enable ","Success");
+  //     document.title = "TextUtils - Dark Mode";
+  //   }else{
+  //     setMode(`light`)
+  //     document.body.style.backgroundColor = `white`;
+  //     showAlert("Light mode has been enable ","Success");
+  //     document.title = "TextUtils - Light Mode";
+
+  //   }
+  // }
   return (
     <>
     <Router>
